@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento - Ramos Barbearia</title>
-    <link rel="stylesheet" href="style/style.css">
+    <!-- stylesheet relativa corrigida -->
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 
+    <!-- Página de agendamento (formulário de exemplo) -->
     <header>
         <nav id="navbar">
             <img src="logo.png" alt="Ramos Barbearia" class="logo-nav">
@@ -15,7 +17,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#servicos">Serviços</a></li>
             </ul>
-            <a href="index.html" class="agendar-button">Voltar</a>
+            <a href="../index.html" class="cta-agendar">Voltar</a>
             
         </nav>
     </header>
@@ -24,6 +26,7 @@
         <h1>Agendamento pelo site</h1>
         <p>Use o formulário abaixo para solicitar um agendamento. Isto é um formulário de exemplo; integre com seu backend quando estiver pronto.</p>
 
+        <!-- Formulário de agendamento (exemplo) -->
         <form id="form-agendamento" action="#" method="post" style="max-width:600px;">
             <label for="nome">Nome completo</label>
             <input id="nome" name="nome" type="text" required style="width:100%;padding:10px;margin:8px 0;border-radius:4px;border:1px solid #333;background:#111;color:#fff;">
@@ -44,10 +47,10 @@
             <label for="hora">Hora</label>
             <input id="hora" name="hora" type="time" style="width:100%;padding:10px;margin:8px 0;border-radius:4px;border:1px solid #333;background:#111;color:#fff;">
 
-            <button type="submit" class="cta-button" style="margin-top:10px;">Enviar solicitação</button>
+            <button type="submit" class="btn-primary" style="margin-top:10px;">Enviar solicitação</button>
         </form>
 
-        <p style="margin-top:20px;">Ou <a href="https://wa.me/5132472310?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Ramos%20Barbearia.%20Meu%20nome%20%3A%20%5Bseu%20nome%5D." class="cta-button">agendar via WhatsApp</a>.</p>
+        <p style="margin-top:20px;">Ou <a href="https://wa.me/5132472310?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Ramos%20Barbearia.%20Meu%20nome%20%3A%20%5Bseu%20nome%5D." class="btn-whatsapp">agendar via WhatsApp</a>.</p>
     </main>
 
     <footer style="padding:20px;text-align:center;border-top:1px solid #222;">

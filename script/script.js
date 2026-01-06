@@ -1,3 +1,8 @@
+/* script/script.js
+ * Arquivo principal de comportamentos JS para a página estática
+ * - Efeito visual do header ao rolar
+ * - Integração mínima com LoginRadius para login/cadastro (exemplo)
+ */
 /*
  * Efeito de mudar a cor da navbar ao rolar a página
  * Descrição: adiciona um listener de scroll que altera a cor de fundo do elemento <header>

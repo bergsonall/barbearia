@@ -4,38 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramos Barbearia | Tradição e Estilo</title>
-    <script src="script/script.js"></script>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script/script.js"></script>
 </head>
 <body>
 
+    <!-- Arquivo: index.html — Página principal estática (header, hero, serviços, footer) -->
+    <!-- Cabeçalho: logo, navegação e controles (login/whatsapp) -->
     <header>
         <nav id="navbar">
             <div class="imagens">
-                <img src="img/logo.png" alt="logo barbearia" id="logo">
-                <img src="img/Captura_de_tela_2026-01-05_233355-removebg-preview.png" alt="logo nome" id="logonome">
+                <!-- Marca principal (logo) -->
+                <img src="img/logo.png" alt="logo barbearia" id="brand-logo">
+                <!-- Marca textual (nome em imagem) -->
+                <img src="img/Captura_de_tela_2026-01-05_233355-removebg-preview.png" alt="logo nome" id="brand-name">
             </div>
+            <!-- Links principais do site -->
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
-            <div class="header-actions">
-                <a href="functions/login.html" class="icon-btn icon-login" title="Entrar" aria-label="Entrar"><i class="fas fa-user"></i></a>
-                <a href="https://wa.me/5132472310?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Ramos%20Barbearia.%20" class="icon-btn icon-whats" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><img src="img/whatsapp.png" alt="WhatsApp"></a>
+            <!-- Controles do cabeçalho: botões de ação (login, whatsapp) -->
+            <div class="header-controls">
+                <a href="functions/login.html" class="icon-btn btn-login" title="Entrar" aria-label="Entrar"><i class="fas fa-user"></i></a>
+                <a href="https://wa.me/5132472310?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Ramos%20Barbearia.%20" class="icon-btn btn-whatsapp" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><img src="img/whatsapp.png" alt="WhatsApp"></a>
             </div>
         </nav>
     </header>
 
     <section id="home" class="hero">
         <div class="hero-content">
+            <!-- Título principal da hero -->
             <h1>RAMOS <span class="text-red">BARBEARIA</span></h1>
             <p>Onde a tradição encontra o seu melhor estilo.</p>
-            <a href="functions/agendamento.html" class="agendar-button">AGENDAR AGORA</a>
+            <!-- CTA principal: agendamento -->
+            <a href="functions/agendamento.html" class="cta-agendar">AGENDAR AGORA</a>
         </div>
     </section>
 
+    <!-- Seção de serviços: cartões com os serviços oferecidos -->
     <section id="servicos" class="services">
         <h2>NOSSOS SERVIÇOS</h2>
         <div class="services-grid">
@@ -57,6 +66,7 @@
         </div>
     </section>
 
+    <!-- Rodapé: informações legais e direitos -->
     <footer>
         <p>&copy; 2024 Ramos Barbearia - Todos os direitos reservados.</p>
     </footer>
