@@ -115,13 +115,19 @@ function requireLoginForAgendar() {
     });
 }
 
-/* Modal: mostrar / ocultar com handlers de backdrop e Esc */
+/* garantir variáveis de handler no escopo global do arquivo (uma vez) */
+var _backdropHandler = null;
+var _escHandler = null;
 
+/* Atualize showLoginModal para também ativar/desativar o blur da página */
 function showLoginModal(nextUrl) {
   var modal = document.getElementById('login-modal');
   if (!modal) return;
   modal.classList.add('modal-open');
   modal.setAttribute('aria-hidden', 'false');
+
+  /* adiciona classe no body pra aplicar o blur via CSS */
+  document.body.classList.add('modal-active');
 
   var loginBtn = document.getElementById('modal-login-btn');
   var closeBtn = document.getElementById('modal-close-btn');
@@ -133,11 +139,9 @@ function showLoginModal(nextUrl) {
   if (loginBtn) loginBtn.addEventListener('click', onLogin, { once: true });
   if (closeBtn) closeBtn.addEventListener('click', onClose, { once: true });
 
-  // backdrop click fecha
   _backdropHandler = function() { hideLoginModal(); };
   if (backdrop) backdrop.addEventListener('click', _backdropHandler);
 
-  // Esc fecha
   _escHandler = function(e) { if (e.key === 'Escape') hideLoginModal(); };
   document.addEventListener('keydown', _escHandler);
 }
@@ -147,6 +151,9 @@ function hideLoginModal() {
   if (!modal) return;
   modal.classList.remove('modal-open');
   modal.setAttribute('aria-hidden', 'true');
+
+  /* remove o blur/lock da página */
+  document.body.classList.remove('modal-active');
 
   var backdrop = modal.querySelector('.modal-backdrop');
   if (backdrop && _backdropHandler) {

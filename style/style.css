@@ -166,54 +166,48 @@ footer {
    Modal de aviso (login required)
    Estilo alinhado com o visual do site
    ------------------ */
-.modal-root {
-    position: fixed; inset: 0; z-index: 1500; display: flex; align-items: center; justify-content: center;
-    pointer-events: none;
-}
 
-.modal-panel {
-  position: relative;
-  z-index: 1501;
-  background: #111;
-  color: #fff;
-  padding: 22px 22px 64px;
-  border-radius: 8px;
-  width: 320px;
-  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
-  border: 1px solid #222;
-  transform: translateY(-8px) scale(0.995);
-  opacity: 0;
-  transition: transform 220ms ease, opacity 220ms ease;
-}
+ /* Permitir eventos quando o modal estiver aberto */
+.modal-root.modal-open { pointer-events: auto; }
 
-/* Quando o modal estiver visível (classe adicionada via JS) */
-.modal-open .modal-backdrop { background: rgba(0,0,0,0.6); }
-.modal-open .modal-panel { transform: translateY(0) scale(1); opacity: 1; }
+/* Garantir ordem de empilhamento correta */
+.modal-backdrop { position: absolute; inset: 0; z-index: 1500; }
+.modal-panel { position: relative; z-index: 1501; }
 
-/* Layout das ações (mantido simples) */
-.modal-actions { display: block; }
-
-/* Botão fechar (X) no canto superior direito do painel */
-.modal-close {
+/*  Botão Entrar*/
+.modal-login {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  right: 12px;
+  bottom: 12px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  background: #1ebe57;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+.modal-login:hover { filter: brightness(.95); transform: translateY(-1px); }
+
+/* Close X:  */
+.modal-close {
+  z-index: 1510; /* acima do painel para garantir clique em edge cases */
+  padding: 6px 8px;
+  font-size: 18px;
   background: transparent;
   border: none;
-  color: #fff;
-  font-size: 20px;
-  line-height: 1;
   cursor: pointer;
-  padding: 6px;
   border-radius: 6px;
 }
 .modal-close:hover { background: rgba(255,255,255,0.03); }
 
-/* Posiciona o botão Entrar no canto inferior direito do painel */
-.modal-login {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
+/* Desfoque/escurecer o resto da página enquanto o modal estiver aberto */
+body.modal-active > :not(#login-modal) {
+  filter: blur(4px) brightness(.8);
+  transition: filter 200ms ease;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ------------------
