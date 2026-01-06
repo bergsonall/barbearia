@@ -167,47 +167,33 @@ footer {
    Estilo alinhado com o visual do site
    ------------------ */
 
-/* Garanta que o modal permita cliques quando aberto */
-.modal-root.modal-open { pointer-events: auto; }
-
-/* Força filhos do painel a receberem eventos (evita overlay bloqueando os botões) */
-.modal-panel, .modal-panel * { pointer-events: auto; }
-
-/* Botão Entrar menor e discreto no canto inferior direito */
-.modal-login {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  padding: 6px 10px;
-  font-size: 0.85rem;
-  background: #1ebe57;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.20);
+.modal-root {
+        position: fixed; inset: 0; z-index: 1500; display: flex; align-items: center; justify-content: center;
+        pointer-events: none;
 }
-.modal-login:hover { filter: brightness(.95); transform: translateY(-1px); }
 
-/* Close X: garantir clique e destaque sutil */
-.modal-close {
-  z-index: 1510;
-  padding: 6px 8px;
-  font-size: 18px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
+/* Backdrop */
+.modal-backdrop {
+        position: absolute; inset: 0; background: rgba(0,0,0,0.0); transition: background 250ms ease; will-change: background;
 }
-.modal-close:hover { background: rgba(255,255,255,0.03); }
 
-/* Desfoque da página enquanto o modal estiver ativo */
-body.modal-active > :not(#login-modal) {
-  filter: blur(4px) brightness(.82);
-  transition: filter 200ms ease;
-  pointer-events: none;
-  user-select: none;
+/* Panel */
+.modal-panel {
+        position: relative; z-index: 1501; background: #111; color: #fff; padding: 22px; border-radius: 8px; width: 320px;
+        box-shadow: 0 6px 30px rgba(0,0,0,0.6); border: 1px solid #222;
+        transform: translateY(-8px) scale(0.995); opacity: 0; transition: transform 220ms ease, opacity 220ms ease; will-change: transform, opacity;
 }
+
+.modal-panel h3 { margin: 0 0 8px 0; font-size: 1.1rem; }
+.modal-panel p { margin: 0 0 14px 0; font-size: 0.95rem; color: #ddd; }
+.modal-actions { display:flex; gap:10px; justify-content:flex-end; }
+.modal-actions .cta-agendar { padding: 8px 16px; font-size: 0.95rem; border-radius:6px; }
+.modal-actions .icon-btn { padding: 8px 12px; background: transparent; border: 1px solid rgba(255,255,255,0.06); color: #fff; border-radius:6px; }
+
+/* Visible state */
+.modal-open { pointer-events: auto; }
+.modal-open .modal-backdrop { background: rgba(0,0,0,0.6); }
+.modal-open .modal-panel { transform: translateY(0) scale(1); opacity: 1; }
 
 /* ------------------
    Botões-ícone (header)

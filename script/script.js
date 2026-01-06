@@ -24,7 +24,7 @@ window.addEventListener('scroll', handleScroll);
  */
 var loginRadiusV2 = loginRadiusV2 || {};
 loginRadiusV2.util = loginRadiusV2.util || {};
-loginRadiusV2.util.ready = function(callback) {
+loginRadiusV2.util.ready = function (callback) {
     if (/complete|interactive|loaded/.test(document.readyState)) {
         callback();
     } else {
@@ -33,7 +33,7 @@ loginRadiusV2.util.ready = function(callback) {
 };
 
 /* Inicializa a configuração do SDK LoginRadius — comente/remova se não for utilizado */
-loginRadiusV2.util.ready(function() {
+loginRadiusV2.util.ready(function () {
     if (typeof LoginRadiusSDK !== 'undefined' && LoginRadiusSDK.setLoginRadiusConfig) {
         LoginRadiusSDK.setLoginRadiusConfig('ramosbarbearia', {
             hashKey: '1f40c717-bc79-4ea4-a7d6-8e22db12788c', // TODO: mover para ambiente seguro
@@ -54,7 +54,7 @@ function handleLoginSubmit(e) {
     var password = document.getElementById('login-password')?.value;
 
     if (typeof LoginRadiusSDK !== 'undefined' && LoginRadiusSDK.login) {
-        LoginRadiusSDK.login({ email: email, password: password }, function(response) {
+        LoginRadiusSDK.login({ email: email, password: password }, function (response) {
             localStorage.setItem('token', response.access_token);
             // redireciona para `next` se presente na query string
             var params = new URLSearchParams(window.location.search);
@@ -65,7 +65,7 @@ function handleLoginSubmit(e) {
             } else {
                 window.location.href = '/dashboard.html';
             }
-        }, function(error) {
+        }, function (error) {
             alert(error.Description || 'Erro no login');
         });
     } else {
@@ -84,10 +84,10 @@ function handleRegisterSubmit(e) {
             email: document.getElementById('reg-email')?.value,
             password: document.getElementById('reg-password')?.value,
             firstName: document.getElementById('reg-name')?.value
-        }, function(response) {
+        }, function (response) {
             alert('Conta criada com sucesso!');
             window.location.href = 'login.html';
-        }, function(error) {
+        }, function (error) {
             alert(error.Description || 'Erro no cadastro');
         });
     } else {
@@ -103,7 +103,7 @@ function requireLoginForAgendar() {
     var cta = document.querySelector('.hero .cta-agendar');
     if (!cta) return;
 
-    cta.addEventListener('click', function(e) {
+    cta.addEventListener('click', function (e) {
         var token = localStorage.getItem('token');
         if (!token) {
             e.preventDefault();
@@ -114,53 +114,68 @@ function requireLoginForAgendar() {
         }
     });
 }
-
 /* declarar handlers uma vez no escopo do arquivo */
 var _backdropHandler = null;
 var _escHandler = null;
 
-/* Ao abrir o modal: adiciona classes no modal e no body (ativa desfoque) */
 function showLoginModal(nextUrl) {
-  var modal = document.getElementById('login-modal');
-  if (!modal) return;
-  modal.classList.add('modal-open');             // habilita pointer-events no modal
-  modal.setAttribute('aria-hidden', 'false');
+    var modal = document.getElementById('login-modal');
+    if (!modal) return;
+    modal.classList.add('modal-open');
+    modal.setAttribute('aria-hidden', 'false');
 
-  document.body.classList.add('modal-active');   // aplica o blur na página
+    var loginBtn = document.getElementById('modal-login-btn');
+    var cancelBtn = document.getElementById('modal-cancel-btn');
+    var backdrop = modal.querySelector('.modal-backdrop');
 
-  var loginBtn = document.getElementById('modal-login-btn');
-  var closeBtn = document.getElementById('modal-close-btn');
-  var backdrop = modal.querySelector('.modal-backdrop');
+    function onLogin() { window.location.href = 'functions/login.html?next=' + encodeURIComponent(nextUrl || '/'); }
+    function onCancel() { hideLoginModal(); }
 
-  function onLogin() { window.location.href = 'functions/login.html?next=' + encodeURIComponent(nextUrl || '/'); }
-  function onClose() { hideLoginModal(); }
+    if (loginBtn) loginBtn.addEventListener('click', onLogin, { once: true });
+    if (cancelBtn) cancelBtn.addEventListener('click', onCancel, { once: true });
 
-  if (loginBtn) loginBtn.addEventListener('click', onLogin, { once: true });
-  if (closeBtn) closeBtn.addEventListener('click', onClose, { once: true });
+    // backdrop click fecha
+    _backdropHandler = function() { hideLoginModal(); };
+    if (backdrop) backdrop.addEventListener('click', _backdropHandler);
 
-  _backdropHandler = function() { hideLoginModal(); };
-  if (backdrop) backdrop.addEventListener('click', _backdropHandler);
-
-  _escHandler = function(e) { if (e.key === 'Escape') hideLoginModal(); };
-  document.addEventListener('keydown', _escHandler);
+    // Esc key fecha
+    _escHandler = function(e) { if (e.key === 'Escape') hideLoginModal(); };
+    document.addEventListener('keydown', _escHandler);
 }
 
-/* Ao fechar: remove classes e listeners */
 function hideLoginModal() {
-  var modal = document.getElementById('login-modal');
-  if (!modal) return;
-  modal.classList.remove('modal-open');
-  modal.setAttribute('aria-hidden', 'true');
+    var modal = document.getElementById('login-modal');
+    if (!modal) return;
+    modal.classList.remove('modal-open');
+    modal.setAttribute('aria-hidden', 'true');
 
-  document.body.classList.remove('modal-active'); // remove blur
-
-  var backdrop = modal.querySelector('.modal-backdrop');
-  if (backdrop && _backdropHandler) {
-    backdrop.removeEventListener('click', _backdropHandler);
-    _backdropHandler = null;
-  }
-  if (_escHandler) {
-    document.removeEventListener('keydown', _escHandler);
-    _escHandler = null;
-  }
+    var backdrop = modal.querySelector('.modal-backdrop');
+    if (backdrop && _backdropHandler) {
+        backdrop.removeEventListener('click', _backdropHandler);
+        _backdropHandler = null;
+    }
+    if (_escHandler) {
+        document.removeEventListener('keydown', _escHandler);
+        _escHandler = null;
+    }
 }
+
+/* Recuperação: limpa estados inconsistentes do modal caso algo tenha permanecido marcado */
+function fixModalState() {
+    try {
+        var modal = document.getElementById('login-modal');
+        if (!modal) {
+            document.body.classList.remove('modal-active');
+            return;
+        }
+        // se body está bloqueando mas o modal não está aberto, limpa
+        if (!modal.classList.contains('modal-open') && document.body.classList.contains('modal-active')) {
+            document.body.classList.remove('modal-active');
+        }
+    } catch (e) {
+        // não bloquear execução por erro inesperado
+        document.body.classList.remove('modal-active');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', fixModalState);
