@@ -70,13 +70,13 @@ nav ul li a:hover { color: var(--red); }
 
 .text-red { color: var(--red); }
 
-/* Botão Agendar (estilo WhatsApp) */
+/* Botão Agendar */
 .hero .hero-content .agendar-button,
 .agendar-button {
     display: inline-block;
     margin-top: 20px;
     padding: 15px 30px;
-    background-color: #25D366; /* verde WhatsApp */
+    background-color: red; 
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
@@ -86,7 +86,7 @@ nav ul li a:hover { color: var(--red); }
 .hero .hero-content .agendar-button:hover,
 .agendar-button:hover {
     transform: scale(1.05);
-    background-color: #1ebe57;
+    background-color: red;
 }
 
 /* Services */
