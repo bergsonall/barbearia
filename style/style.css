@@ -104,3 +104,7 @@ nav ul li a:hover { color: var(--red); }
 .red-card { border: 2px solid var(--red); }
 
 footer { padding: 20px; text-align: center; border-top: 1px solid #222; font-size: 0.8rem; }
+
+#logo{
+    max-width: 100px;
+}
