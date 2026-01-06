@@ -171,28 +171,51 @@ footer {
     pointer-events: none;
 }
 
-/* Backdrop */
-.modal-backdrop {
-    position: absolute; inset: 0; background: rgba(0,0,0,0.0); transition: background 250ms ease; will-change: background;
-}
-
-/* Panel */
 .modal-panel {
-    position: relative; z-index: 1501; background: #111; color: #fff; padding: 22px; border-radius: 8px; width: 320px;
-    box-shadow: 0 6px 30px rgba(0,0,0,0.6); border: 1px solid #222;
-    transform: translateY(-8px) scale(0.995); opacity: 0; transition: transform 220ms ease, opacity 220ms ease; will-change: transform, opacity;
+  position: relative;
+  z-index: 1501;
+  background: #111;
+  color: #fff;
+  padding: 22px 22px 64px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  border: 1px solid #222;
+  transform: translateY(-8px) scale(0.995);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
 }
 
-.modal-panel h3 { margin: 0 0 8px 0; font-size: 1.1rem; }
-.modal-panel p { margin: 0 0 14px 0; font-size: 0.95rem; color: #ddd; }
-.modal-actions { display:flex; gap:10px; justify-content:flex-end; }
-.modal-actions .cta-agendar { padding: 8px 16px; font-size: 0.95rem; border-radius:6px; }
-.modal-actions .icon-btn { padding: 8px 12px; background: transparent; border: 1px solid rgba(255,255,255,0.06); color: #fff; border-radius:6px; }
-
-/* Visible state */
-.modal-open { pointer-events: auto; }
+/* Quando o modal estiver visível (classe adicionada via JS) */
 .modal-open .modal-backdrop { background: rgba(0,0,0,0.6); }
 .modal-open .modal-panel { transform: translateY(0) scale(1); opacity: 1; }
+
+/* Layout das ações (mantido simples) */
+.modal-actions { display: block; }
+
+/* Botão fechar (X) no canto superior direito do painel */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+}
+.modal-close:hover { background: rgba(255,255,255,0.03); }
+
+/* Posiciona o botão Entrar no canto inferior direito do painel */
+.modal-login {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
 /* ------------------
    Botões-ícone (header)
    ------------------ */

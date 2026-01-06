@@ -116,47 +116,45 @@ function requireLoginForAgendar() {
 }
 
 /* Modal: mostrar / ocultar com handlers de backdrop e Esc */
-var _backdropHandler = null;
-var _escHandler = null;
 
 function showLoginModal(nextUrl) {
-    var modal = document.getElementById('login-modal');
-    if (!modal) return;
-    modal.classList.add('modal-open');
-    modal.setAttribute('aria-hidden', 'false');
+  var modal = document.getElementById('login-modal');
+  if (!modal) return;
+  modal.classList.add('modal-open');
+  modal.setAttribute('aria-hidden', 'false');
 
-    var loginBtn = document.getElementById('modal-login-btn');
-    var cancelBtn = document.getElementById('modal-cancel-btn');
-    var backdrop = modal.querySelector('.modal-backdrop');
+  var loginBtn = document.getElementById('modal-login-btn');
+  var closeBtn = document.getElementById('modal-close-btn');
+  var backdrop = modal.querySelector('.modal-backdrop');
 
-    function onLogin() { window.location.href = 'functions/login.html?next=' + encodeURIComponent(nextUrl || '/'); }
-    function onCancel() { hideLoginModal(); }
+  function onLogin() { window.location.href = 'functions/login.html?next=' + encodeURIComponent(nextUrl || '/'); }
+  function onClose() { hideLoginModal(); }
 
-    if (loginBtn) loginBtn.addEventListener('click', onLogin, { once: true });
-    if (cancelBtn) cancelBtn.addEventListener('click', onCancel, { once: true });
+  if (loginBtn) loginBtn.addEventListener('click', onLogin, { once: true });
+  if (closeBtn) closeBtn.addEventListener('click', onClose, { once: true });
 
-    // backdrop click closes
-    _backdropHandler = function() { hideLoginModal(); };
-    if (backdrop) backdrop.addEventListener('click', _backdropHandler);
+  // backdrop click fecha
+  _backdropHandler = function() { hideLoginModal(); };
+  if (backdrop) backdrop.addEventListener('click', _backdropHandler);
 
-    // Esc key closes
-    _escHandler = function(e) { if (e.key === 'Escape') hideLoginModal(); };
-    document.addEventListener('keydown', _escHandler);
+  // Esc fecha
+  _escHandler = function(e) { if (e.key === 'Escape') hideLoginModal(); };
+  document.addEventListener('keydown', _escHandler);
 }
 
 function hideLoginModal() {
-    var modal = document.getElementById('login-modal');
-    if (!modal) return;
-    modal.classList.remove('modal-open');
-    modal.setAttribute('aria-hidden', 'true');
+  var modal = document.getElementById('login-modal');
+  if (!modal) return;
+  modal.classList.remove('modal-open');
+  modal.setAttribute('aria-hidden', 'true');
 
-    var backdrop = modal.querySelector('.modal-backdrop');
-    if (backdrop && _backdropHandler) {
-        backdrop.removeEventListener('click', _backdropHandler);
-        _backdropHandler = null;
-    }
-    if (_escHandler) {
-        document.removeEventListener('keydown', _escHandler);
-        _escHandler = null;
-    }
+  var backdrop = modal.querySelector('.modal-backdrop');
+  if (backdrop && _backdropHandler) {
+    backdrop.removeEventListener('click', _backdropHandler);
+    _backdropHandler = null;
+  }
+  if (_escHandler) {
+    document.removeEventListener('keydown', _escHandler);
+    _escHandler = null;
+  }
 }
