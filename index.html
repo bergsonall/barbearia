@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script/script.js"></script>
 </head>
+
 <body>
 
     <!-- Arquivo: index.html — Página principal estática (header, hero, serviços, footer) -->
@@ -28,8 +30,11 @@
             </ul>
             <!-- Controles do cabeçalho: botões de ação (login, whatsapp) -->
             <div class="header-controls">
-                <a href="functions/login.html" class="icon-btn btn-login" title="Entrar" aria-label="Entrar"><i class="fas fa-user"></i></a>
-                <a href="https://wa.me/5132472310?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Ramos%20Barbearia.%20" class="icon-btn btn-whatsapp" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><img src="img/whatsapp.png" alt="WhatsApp"></a>
+                <a href="functions/login.html" class="icon-btn btn-login" title="Entrar" aria-label="Entrar"><i
+                        class="fas fa-user"></i></a>
+                <a href="https://wa.me/5132472310?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Ramos%20Barbearia.%20"
+                    class="icon-btn btn-whatsapp" title="WhatsApp" aria-label="WhatsApp" target="_blank"
+                    rel="noopener noreferrer"><img src="img/whatsapp.png" alt="WhatsApp"></a>
             </div>
         </nav>
     </header>
@@ -71,6 +76,20 @@
         <p>&copy; 2024 Ramos Barbearia - Todos os direitos reservados.</p>
     </footer>
 
-  
+
 </body>
+
 </html>
+
+<!-- Modal de login (aparece quando usuário tenta agendar sem estar autenticado) -->
+<div id="login-modal" class="modal-hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <h3 id="modal-title">Atenção</h3>
+        <p>Você precisa estar logado para agendar um horário.</p>
+        <div class="modal-actions">
+            <button id="modal-login-btn" class="cta-agendar">Entrar</button>
+            <button id="modal-cancel-btn" class="icon-btn">Cancelar</button>
+        </div>
+    </div>
+</div>
