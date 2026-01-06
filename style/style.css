@@ -159,3 +159,12 @@ footer { padding: 20px; text-align: center; border-top: 1px solid #222; font-siz
     nav ul { display:none; }
 
 }
+
+#logo {
+    max-width: 100px;
+    margin-left: 20px;
+}
+
+#logonome {
+    max-width: 150px;
+}
