@@ -157,4 +157,5 @@ footer { padding: 20px; text-align: center; border-top: 1px solid #222; font-siz
 @media (max-width:800px) {
     .auth-panel { grid-template-columns: 1fr; }
     nav ul { display:none; }
+
 }
