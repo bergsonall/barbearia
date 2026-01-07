@@ -1,6 +1,24 @@
 fetch('http://localhost:3000/servicos')
-  .then(res => res.json())
-  .then(data => console.log(data));
+    .then(res => res.json())
+    .then(data => console.log(data));
+
+
+document.getElementById('login-form')?.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+    });
+
+    const data = await response.json();
+    console.log(data);
+});
+
 
 // Aguarda o carregamento total do DOM
 document.addEventListener('DOMContentLoaded', function() {
@@ -17,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!token) {
                 e.preventDefault(); // Para o link
                 const btn = target.closest('.cta-agendar');
-                const nextUrl = btn.getAttribute('href') || 'functions/agendamento.html';
+                const nextUrl = btn.getAttribute('href') || 'pages/agendamento.html';
                 
                 abrirModal(nextUrl);
             }
@@ -37,10 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (target.closest('#modal-login-btn')) {
             e.preventDefault();
             const modal = document.getElementById('login-modal');
-            const proximoPasso = modal.dataset.next || 'functions/agendamento.html';
+            const proximoPasso = modal.dataset.next || 'pages/agendamento.html';
             // Redireciona para a tela de login levando o destino original
-            window.location.href = 'functions/login.html?next=' + encodeURIComponent(proximoPasso);
-        }
+            window.location.href = 'pages/login.html?next=' + encodeURIComponent(proximoPasso);
+      }
     });
 
     // 2. FUNÇÕES DE SUPORTE
