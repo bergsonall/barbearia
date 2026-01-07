@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento - Ramos Barbearia</title>
     <!-- stylesheet relativa corrigida -->
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
 </head>
 
 <body>
@@ -66,6 +67,37 @@
         <p>&copy; 2024 Ramos Barbearia - Todos os direitos reservados.</p>
     </footer>
 
+    <script>
+        document.getElementById('agendamento-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = document.getElementById('data').value;
+            const hora_inicio = document.getElementById('hora_inicio').value;
+            const hora_fim = document.getElementById('hora_fim').value;
+            const id_servico = document.getElementById('servico').value;
+
+            const response = await fetch('http://localhost:3000/agendamentos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id_cliente: 1,   // usuário logado (temporário)
+                    id_barbeiro: 2,  // barbeiro fixo (temporário)
+                    id_servico,
+                    data,
+                    hora_inicio,
+                    hora_fim
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert('Agendamento realizado com sucesso');
+            } else {
+                alert(result.erro || 'Erro ao agendar');
+            }
+        });
+    </script>
 </body>
 
 </html>
