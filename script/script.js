@@ -1,3 +1,7 @@
+fetch('http://localhost:3000/servicos')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
 // Aguarda o carregamento total do DOM
 document.addEventListener('DOMContentLoaded', function() {
     
