@@ -67,19 +67,29 @@
         document.getElementById('register-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const nome = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const senha = document.getElementById('register-password').value;
+            const nome = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const senha = document.getElementById('reg-password').value;
+
+            if (nome.length < 3) {
+                alert('Nome deve ter no mínimo 3 caracteres');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Informe um email válido');
+                return;
+            }
+
+            if (senha.length < 6) {
+                alert('Senha deve ter no mínimo 6 caracteres');
+                return;
+            }
 
             const response = await fetch('http://localhost:3000/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nome,
-                    email,
-                    senha,
-                    tipo_usuario: 'cliente'
-                })
+                body: JSON.stringify({ nome, email, senha })
             });
 
             const data = await response.json();
