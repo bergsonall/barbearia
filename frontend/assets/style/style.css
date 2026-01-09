@@ -20,7 +20,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.loading{
+.loading {
     background: rgba(0, 0, 0, 0.7);
     position: fixed;
     inset: 0;
@@ -29,16 +29,40 @@
     align-items: center;
     justify-content: center;
     color: var(--white);
-    font-size: 1.5rem;  
+    font-size: 1.5rem;
     width: 100%;
     height: 100%;
 }
 
 /* Corpo */
 body {
-    background: var(--black);
+    background: #070707;
     color: var(--white);
     scroll-behavior: smooth;
+    position: relative;
+}
+
+/* =========================
+   BACKGROUND PREMIUM (global)
+========================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    /* 1) brilho vermelho superior + 2) luz central + 3) vinheta + 4) textura grid */
+    background:
+        radial-gradient(circle at 20% 0%, rgba(230, 0, 0, 0.28), transparent 45%),
+        radial-gradient(circle at 80% 10%, rgba(230, 0, 0, 0.18), transparent 55%),
+        radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.06), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.98) 70%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 14px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 18px);
+
+    filter: contrast(1.05) saturate(1.05);
+    opacity: 1;
+    pointer-events: none;
 }
 
 /* ------------------
@@ -179,33 +203,33 @@ nav ul li a:hover {
 }
 
 .services-subtitle {
-  margin-top: 10px;
-  color: #cfcfcf;
-  font-size: 0.95rem;
+    margin-top: 10px;
+    color: #cfcfcf;
+    font-size: 0.95rem;
 }
 
 .services-alt {
-  background: radial-gradient(circle at top, rgba(230,0,0,0.10), transparent 55%);
+    background: radial-gradient(circle at top, rgba(230, 0, 0, 0.10), transparent 55%);
 }
 
 .services-grid-alt {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .service-card-alt {
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.0));
-  transition: transform .2s ease, border-color .2s ease;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.0));
+    transition: transform .2s ease, border-color .2s ease;
 }
 
 .service-card-alt:hover {
-  transform: translateY(-4px);
-  border-color: rgba(230,0,0,0.35);
+    transform: translateY(-4px);
+    border-color: rgba(230, 0, 0, 0.35);
 }
 
 .service-card-alt i {
-  font-size: 2.4rem;
+    font-size: 2.4rem;
 }
 
 footer {
@@ -222,33 +246,36 @@ footer {
 
 /* Modal: não bloquear a página quando fechado */
 .modal-root {
-  position: fixed;
-  inset: 0;
-  z-index: 1500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-/* Quando fechado: invisível e sem interceptar eventos */
-  visibility: hidden;
-  pointer-events: none;
+    /* Quando fechado: invisível e sem interceptar eventos */
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* Backdrop */
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.0); /*transparente por padrão*/
+    background: rgba(0, 0, 0, 0.0);
+    /*transparente por padrão*/
     transition: background 250ms ease;
 }
 
 /* 1. O PAINEL (Obrigatório ter position: relative) */
 .modal-panel {
-    position: relative; /* Isso "prende" o X aqui dentro */
+    position: relative;
+    /* Isso "prende" o X aqui dentro */
     z-index: 1501;
     background: #111;
     color: #fff;
-    padding: 30px; /* Aumentei um pouco para não sufocar o texto */
+    padding: 30px;
+    /* Aumentei um pouco para não sufocar o texto */
     border-radius: 8px;
     width: 90%;
     max-width: 320px;
@@ -382,6 +409,7 @@ footer {
         opacity: 0;
         transform: translateY(10px) scale(0.96);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -409,11 +437,13 @@ footer {
     align-items: center;
     justify-content: center;
     background: transparent;
-    border: none;               /* remove qualquer borda */
-    padding: 6px;               /* área de clique confortável */
+    border: none;
+    /* remove qualquer borda */
+    padding: 6px;
+    /* área de clique confortável */
     cursor: pointer;
     text-decoration: none;
-    transition: 
+    transition:
         transform 0.25s ease,
         color 0.25s ease,
         filter 0.25s ease;
@@ -427,7 +457,8 @@ footer {
 .header-controls {
     display: flex;
     align-items: center;
-    gap: 16px; /* espaçamento igual entre todos */
+    gap: 16px;
+    /* espaçamento igual entre todos */
 }
 
 /* =========================
@@ -463,12 +494,14 @@ footer {
 ========================= */
 .btn-whatsapp i {
     font-size: 28px;
-    color: #ffffff; /* branco padrão */
+    color: #ffffff;
+    /* branco padrão */
     transition: color 0.25s ease;
 }
 
 .btn-whatsapp:hover i {
-    color: #25D366; /* verde oficial WhatsApp */
+    color: #25D366;
+    /* verde oficial WhatsApp */
 }
 
 /* ------------------
@@ -541,14 +574,16 @@ button:disabled,
 
 .btn-voltar i {
     color: inherit;
-    font-size: 24px; /* maior e visível */
+    font-size: 24px;
+    /* maior e visível */
 }
 
 /* =========================
    PÁGINAS DE FORMULÁRIO (LOGIN / REGISTER / AGENDAMENTO)
 ========================= */
 .auth-page {
-    padding-top: 160px; /* compensa o header fixo */
+    padding-top: 160px;
+    /* compensa o header fixo */
     padding-left: 5%;
     padding-right: 5%;
     min-height: 100vh;
@@ -564,7 +599,7 @@ button:disabled,
     border: 1px solid #222;
     border-radius: 10px;
     padding: 28px 22px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .form-wrapper h1 {
@@ -606,7 +641,7 @@ button:disabled,
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--accent-red);
-    box-shadow: 0 0 0 3px rgba(230,0,0,0.18);
+    box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.18);
 }
 
 /* estados nativos HTML5 */
@@ -724,5 +759,3 @@ button:disabled,
         padding: 24px 18px;
     }
 }
-
-
