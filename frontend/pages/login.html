@@ -14,6 +14,7 @@
 <header>
   <nav id="navbar">
 
+<<<<<<< Updated upstream
     <div class="imagens">
       <img src="../assets/img/logo.png" alt="logo barbearia" id="brand-logo">
       <img src="../assets/img/Captura_de_tela_2026-01-05_233355-removebg-preview.png" alt="logo nome" id="brand-name">
@@ -33,6 +34,23 @@
 
   </nav>
 </header>
+=======
+      <div class="card-body">
+      <h3 class="card-title text-center mb-4">Entrar</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#servicos">Serviços</a></li>
+        <li><a href="../index.html#contato">Contato</a></li>
+      </ul>
+
+      <div class="header-controls">
+        <a href="../index.html" class="icon-btn btn-voltar" title="Voltar" aria-label="Voltar">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+>>>>>>> Stashed changes
 
   <main class="auth-page">
 
@@ -44,7 +62,7 @@
 
       <!-- Formulário de login
            Obs: JS será tratado no script.js -->
-      <form id="login-form" novalidate>
+      <form id="login-form">
 
         <!-- Campo de email -->
         <div class="form-group">
@@ -57,6 +75,8 @@
           <label for="login-password">Senha</label>
           <input type="password" id="login-password" placeholder="Sua senha" required>
         </div>
+
+        <div id="invalid-feedback" class="invalid-feedback"></div>
 
         <!-- Ações do formulário -->
         <div class="form-actions">
@@ -76,7 +96,10 @@
   <footer>
     <p>&copy; 2024 Ramos Barbearia - Todos os direitos reservados.</p>
   </footer>
-
+  
+  <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-auth-compat.js"></script>
+  <script src="../../backend/auth.js"></script>
 </body>
 
 </html>

@@ -19,6 +19,8 @@ if (btnLogin){
       //valida os diferentes erros de auth e exibe mensagem de correção de acordo com o erro
       firebase.auth().signInWithEmailAndPassword(email, password).then(response =>{
           console.log("Usuário logado com sucesso!", response);
+          document.getElementById("login-form").reset();
+          window.location.href = "../index.html";
       }).catch(error =>{
           console.error("Erro ao logar o usuário:", error);
           console.log("Código do erro:", error.code);
@@ -55,6 +57,7 @@ if (btnRegister){
       firebase.auth().createUserWithEmailAndPassword(email, password).then(response =>{
           document.getElementById("reg-invalid-feedback").textContent = "Usuário registrado com sucesso!";
           document.getElementById("register-form").reset();
+          window.location.href = "login.html";
       }).catch(error =>{
           console.error("Erro ao registrar o usuário:", error);
           if(!password || !email || !name || !passwordConfirm){
