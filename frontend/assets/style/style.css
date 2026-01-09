@@ -21,7 +21,7 @@
 }
 
 .loading{
-    background: brgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);
     position: fixed;
     inset: 0;
     z-index: 2000;
@@ -470,115 +470,23 @@ button:disabled,
     }
 }
 
-/* ===============================
-   FORMULÁRIOS — PADRÃO GLOBAL
-   (Login / Register / Agendamento)
-   =============================== */
-
-.form-wrapper {
-    max-width: 500px;
-    margin: 140px auto 60px;
-    padding: 30px;
-    background: #111; /* igual modais e inputs */
-    border: 1px solid #222;
-    border-radius: 8px;
-}
-
-.form-wrapper h1,
-.form-wrapper h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-    color: #ddd;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 4px;
-    color: #fff;
-}
-
-/* Foco (UX importante) */
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--accent-red);
-}
-
-.form-actions {
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Estado de erro (para uso futuro com JS) */
-.form-group.error input,
-.form-group.error select {
-    border-color: #ff4d4d;
-}
-
-.form-group.error small {
-    color: #ff4d4d;
-    font-size: 0.8rem;
-}
-
-/* Botão de formulário */
-.form-submit {
-    margin-top: 10px;
-}
-
-.form-submit button,
-.form-submit .cta-agendar {
-    width: 100%;
-}
-
-.form-helper a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block; /* necessário para o transform */
-    transition: color 0.25s ease, transform 0.25s ease;
-    text-decoration: underline;
-}
-
-.form-helper a:hover {
-    color: var(--accent-red);
-    transform: scale(1.08); /* aumenta levemente */
-}
-
-
 /* =========================
    BOTÃO VOLTAR (REGISTER / LOGIN)
 ========================= */
 
-a.btn-voltar,
-a.btn-voltar:visited {
+.btn-voltar,
+.btn-voltar:visited {
     color: #ffffff;
     text-decoration: none;
-    
 }
 
-a.btn-voltar:hover {
+.btn-voltar:hover {
     color: var(--accent-red);
 }
 
-/* garante que o ícone herde a cor do link */
-a.btn-voltar i {
+.btn-voltar i {
     color: inherit;
-    font-size: 20px;
+    font-size: 24px; /* maior e visível */
 }
 
 /* =========================
@@ -683,4 +591,81 @@ a.btn-voltar i {
 .form-helper a:hover {
     color: var(--accent-red);
     transform: scale(1.08);
+}
+
+/* =========================
+   RESPONSIVO (MOBILE / TABLET)
+========================= */
+
+/* evita scroll horizontal em telas pequenas */
+@media (max-width: 800px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    /* header */
+    header {
+        padding: 0.8rem 4%;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    #brand-logo {
+        max-width: 64px;
+    }
+
+    #brand-name {
+        max-width: 120px;
+    }
+
+    /* hero */
+    .hero-content h1 {
+        font-size: 2.6rem;
+        letter-spacing: 2px;
+    }
+
+    /* serviços */
+    .services {
+        padding: 60px 5%;
+    }
+
+    .service-card {
+        padding: 22px;
+    }
+
+    /* formulários */
+    .auth-page {
+        padding-top: 140px;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .form-wrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    #brand-name {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.1rem;
+        letter-spacing: 1px;
+    }
+
+    .cta-agendar {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    .modal-panel {
+        width: 92%;
+        max-width: 92%;
+        padding: 24px 18px;
+    }
 }
