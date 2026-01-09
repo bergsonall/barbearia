@@ -1,3 +1,6 @@
+const email = document.getElementById("login-email").value;
+const password = document.getElementById("login-password").value;
+
 const firebaseConfig = {
     apiKey: "AIzaSyCwHSefApnq82su3wZrSQ5GC4jdmnoiqL0",
     authDomain: "barbearia-63be3.firebaseapp.com",
@@ -8,8 +11,12 @@ const firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
 
-firebase.auth().signInWithEmailAndPassword("brunodubalhoffmann@hotmail.com", "123456").then(response =>{
-        console.log("Usuário logado com sucesso!", response);
-}).catch(error =>{
-    console.error("Erro ao logar o usuário:", error);
+document.getElementById("btn-login").addEventListener("click", function(e){
+    e.preventDefault();
+    console.log("Tentando logar com", email, password);
+    firebase.auth().signInWithEmailAndPassword(email, password).then(response =>{
+            console.log("Usuário logado com sucesso!", response);
+    }).catch(error =>{
+        console.error("Erro ao logar o usuário:", error);
+    });
 });
