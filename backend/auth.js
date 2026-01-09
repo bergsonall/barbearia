@@ -1,6 +1,3 @@
-const email = document.getElementById("login-email").value;
-const password = document.getElementById("login-password").value;
-
 const firebaseConfig = {
     apiKey: "AIzaSyCwHSefApnq82su3wZrSQ5GC4jdmnoiqL0",
     authDomain: "barbearia-63be3.firebaseapp.com",
@@ -13,7 +10,14 @@ const firebaseConfig = {
 
 document.getElementById("btn-login").addEventListener("click", function(e){
     e.preventDefault();
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
     console.log("Tentando logar com", email, password);
+
+    if (!email || !password) {
+      alert("Preencha email e senha");
+      return;
+    } 
     firebase.auth().signInWithEmailAndPassword(email, password).then(response =>{
             console.log("Usuário logado com sucesso!", response);
     }).catch(error =>{
