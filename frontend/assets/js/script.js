@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =====================================
        PROTEÇÃO DO BOTÃO "AGENDAR"
     ===================================== */
-    document.addEventListener('click', (e) => {
+  /*  document.addEventListener('click', (e) => {
         const btn = e.target.closest('.cta-agendar');
         if (!btn) return;
 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             abrirModal(btn.getAttribute('href'));
         }
     });
-
+*/
     /* =====================================
        MODAL DE LOGIN
     ===================================== */

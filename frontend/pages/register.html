@@ -27,56 +27,36 @@
 
                     <!-- NOME -->
                     <div class="mb-3">
-                        <label for="reg-name" class="form-label">Nome completo</label>
-                        <input
-                            type="text"
-                            id="reg-name"
-                            class="form-control"
-                            required
-                            minlength="3"
-                            placeholder="Seu nome"
-                        >
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmar Senha</label>
+                            <input type="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Celular</label>
+                            <input type="email">
+                        </div>
+
                         <div class="invalid-feedback">
                             Informe um nome com pelo menos 3 caracteres.
                         </div>
                     </div>
 
-                    <!-- EMAIL -->
-                    <div class="mb-3">
-                        <label for="reg-email" class="form-label">Email</label>
-                        <input
-                            type="email"
-                            id="reg-email"
-                            class="form-control"
-                            required
-                            placeholder="seu@email.com"
-                        >
-                        <div class="invalid-feedback">
-                            Informe um email válido.
-                        </div>
-                    </div>
-
-                    <!-- SENHA -->
-                    <div class="mb-3">
-                        <label for="reg-password" class="form-label">Senha</label>
-                        <input
-                            type="password"
-                            id="reg-password"
-                            class="form-control"
-                            required
-                            minlength="6"
-                            placeholder="Mínimo 6 caracteres"
-                        >
-                        <div class="invalid-feedback">
-                            A senha deve ter no mínimo 6 caracteres.
-                        </div>
-                    </div>
-
                     <!-- BOTÃO -->
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            Registrar
-                        </button>
+                    <div class="form-submit">
+                        <button type="submit" class="cta-agendar">Criar conta</button>
                     </div>
                 </form>
 
@@ -168,4 +148,5 @@
     </script>
 
 </body>
+
 </html>

@@ -27,66 +27,57 @@
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main style="padding:120px 5%;">
+    <main>
+        <div class="form-wrapper">
+            <h1>Agendamento pelo site</h1>
+            <p>Preencha o formulário abaixo para solicitar seu horário.</p>
 
-        <h1>Agendamento pelo site</h1>
-        <p>Preencha o formulário abaixo para solicitar seu horário.</p>
-
-        <!-- FORMULÁRIO DE AGENDAMENTO -->
-        <form id="form-agendamento" style="max-width:600px;">
-
+            <!-- FORMULÁRIO DE AGENDAMENTO -->
             <!-- Nome -->
-            <label for="nome">Nome completo</label>
-            <input
-                id="nome"
-                type="text"
-                required
-                placeholder="Seu nome"
-                class="input-dark"
-            >
+            <form id="form-agendamento">
 
-            <!-- Telefone -->
-            <label for="telefone">Telefone</label>
-            <input
-                id="telefone"
-                type="tel"
-                required
-                placeholder="(XX) XXXXX-XXXX"
-                class="input-dark"
-            >
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input id="nome" name="nome" type="text" required>
+                </div>
 
-            <!-- Serviço -->
-            <label for="servico">Serviço</label>
-            <select id="servico" class="input-dark" required>
-                <option value="">Selecione um serviço</option>
-                <option value="1">Corte Clássico</option>
-                <option value="2">Barba Terapia</option>
-                <option value="3">Combo Ramos</option>
-            </select>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input id="telefone" name="telefone" type="tel" required>
+                </div>
 
-            <!-- Data -->
-            <label for="data">Data desejada</label>
-            <input id="data" type="date" class="input-dark" required>
+                <div class="form-group">
+                    <label for="servico">Serviço</label>
+                    <select id="servico" name="servico">
+                        <option>Corte Clássico</option>
+                        <option>Barba Terapia</option>
+                        <option>Combo Ramos</option>
+                    </select>
+                </div>
 
-            <!-- Hora -->
-            <label for="hora">Horário</label>
-            <input id="hora" type="time" class="input-dark" required>
+                <div class="form-group">
+                    <label for="data">Data desejada</label>
+                    <input id="data" name="data" type="date" required>
+                </div>
 
-            <!-- Botão -->
-            <button type="submit" class="btn-primary" style="margin-top:15px;">
-                Confirmar agendamento
-            </button>
-        </form>
+                <div class="form-group">
+                    <label for="hora">Hora</label>
+                    <input id="hora" name="hora" type="time" required>
+                </div>
 
+                <div class="form-actions">
+                    <button type="submit" class="cta-agendar">
+                        Enviar solicitação
+                    </button>
+                </div>
+            </form>
+        </div>
         <!-- WhatsApp -->
         <p style="margin-top:20px;">
             Ou
-            <a
-                href="https://wa.me/5132472310?text=Olá! Gostaria de agendar um horário na Ramos Barbearia."
-                class="btn-whatsapp"
-                target="_blank"
-            >
-                agendar via WhatsApp
+            <a href="https://wa.me/5132472310?text=Olá! Gostaria de agendar um horário na Ramos Barbearia."
+                class="btn-whatsapp" target="_blank">
+                Agendar via WhatsApp
             </a>
         </p>
 
@@ -162,4 +153,5 @@
     </script>
 
 </body>
+
 </html>
