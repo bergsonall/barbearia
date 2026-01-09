@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-   firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(user => {
         if (user) {
             window.location.href = "../index.html";
         }
@@ -63,8 +63,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         firebase.auth()
             .createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                firebase.auth().signOut();
+                const user = userCredential.user;
+
+                // 🔐 Envia email de verificação
+                return user.sendEmailVerification();
+            })
             .then(() => {
-                return firebase.auth().signOut(); // não loga automaticamente
+                hideLoading();
+                feedback.textContent =
+                    "Cadastro realizado! Verifique seu email para ativar a conta.";
+                feedback.style.display = "block";
+
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 10000);
             })
             .then(() => {
                 hideLoading();

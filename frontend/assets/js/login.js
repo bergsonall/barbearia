@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {  
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
+    firebase.auth().onAuthStateChanged((userCredential) => {
+        if (userCredential && userCredential.emailVerified) {
             window.location.href = "../index.html";
         }
     })
@@ -17,9 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Tentando logar com", email, password);
 
             // Faz login no Firebase
-            firebase.auth().signInWithEmailAndPassword(email, password).then(response => {
-                console.log("Usuário logado com sucesso!", response);
-                document.getElementById("login-form").reset();
+            firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+                const user = userCredential.user;
+
+                if (!user.emailVerified) {
+                    hideLoading();
+                    document.getElementById("invalid-feedback").textContent = "Por favor, verifique seu email antes de fazer login.";
+                    document.getElementById("invalid-feedback").style.display = "block";
+                    firebase.auth().signOut();
+                    return;
+                }
                 window.location.href = "../index.html";
                 hideLoading();
             }).catch(error => {
