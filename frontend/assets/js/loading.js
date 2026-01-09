@@ -7,5 +7,8 @@ function showLoading() {
 
 
 function hideLoading() {
-    document.getElementsByClassName('loading')[0].remove();
+    const loading = document.getElementsByClassName("loading")[0];
+    if (loading) {
+        loading.remove();
+    }
 }
