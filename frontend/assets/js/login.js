@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {  
+document.addEventListener("DOMContentLoaded", function () {
     firebase.auth().onAuthStateChanged((userCredential) => {
         if (userCredential && userCredential.emailVerified) {
             window.location.href = "../index.html";
