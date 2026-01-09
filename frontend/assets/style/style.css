@@ -399,7 +399,6 @@ footer {
 
 /* ===============================
    UX — ESTADOS DE BOTÕES
-   (ADIÇÃO SEGURA — NÃO CONFLITA)
    =============================== */
 
 button:disabled,
@@ -472,7 +471,6 @@ button:disabled,
     margin-top: 20px;
     text-align: center;
 }
-
 
 /* Estado de erro (para uso futuro com JS) */
 .form-group.error input,
