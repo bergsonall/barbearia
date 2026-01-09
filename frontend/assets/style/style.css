@@ -566,7 +566,9 @@ a.btn-voltar i {
    PÁGINAS DE FORMULÁRIO (LOGIN / REGISTER / AGENDAMENTO)
 ========================= */
 .auth-page {
-    padding: 120px 5%;
+    padding-top: 160px; /* compensa o header fixo */
+    padding-left: 5%;
+    padding-right: 5%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
