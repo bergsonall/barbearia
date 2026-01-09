@@ -494,45 +494,38 @@ button:disabled,
     width: 100%;
 }
 
-/* =========================
-   REGISTER - BOTÃO VOLTAR
-========================= */
+.form-helper a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block; /* necessário para o transform */
+    transition: color 0.25s ease, transform 0.25s ease;
+    text-decoration: underline;
+}
+
+.form-helper a:hover {
+    color: var(--accent-red);
+    transform: scale(1.08); /* aumenta levemente */
+}
+
+
 /* =========================
    BOTÃO VOLTAR (REGISTER / LOGIN)
 ========================= */
-header .header-controls a.btn-voltar,
-header .header-controls a.btn-voltar:link,
-header .header-controls a.btn-voltar:visited {
+
+a.btn-voltar,
+a.btn-voltar:visited {
     color: #ffffff;
     text-decoration: none;
+    
 }
 
-header .header-controls a.btn-voltar i {
+a.btn-voltar:hover {
+    color: var(--accent-red);
+}
+
+/* garante que o ícone herde a cor do link */
+a.btn-voltar i {
     color: inherit;
-    font-size: 34px;
-    transition: color 0.25s ease, transform 0.25s ease;
-}
-
-header .header-controls a.btn-voltar:hover,
-header .header-controls a.btn-voltar:hover i {
-    color: var(--accent-red);
-}
-
-header .header-controls a.btn-voltar:hover i {
-    transform: translateX(-3px) scale(1.1);
-}
-
-/* =========================
-   REGISTER - LINK "ENTRAR"
-========================= */
-body .form-helper a {
-    color: #ffffff;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.25s ease;
-    text-decoration: underline ;
-}
-
-body .form-helper a:hover {
-    color: var(--accent-red);
+    font-size: 20px;
 }
