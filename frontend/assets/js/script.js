@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =====================================
        CARREGAMENTO DE SERVIÇOS
     ===================================== */
-    const servicesGrid = document.getElementById('services-grid');
+/*   const servicesGrid = document.getElementById('services-grid');
 
     if (servicesGrid) {
         fetch('http://localhost:3000/servicos')
@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 servicesGrid.innerHTML = '<p>Erro ao carregar serviços.</p>';
             });
     }
-
+*/
     /* =====================================
        PROTEÇÃO DO BOTÃO "AGENDAR"
     ===================================== */
-  /*  document.addEventListener('click', (e) => {
+   document.addEventListener('click', (e) => {
         const btn = e.target.closest('.cta-agendar');
         if (!btn) return;
 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             abrirModal(btn.getAttribute('href'));
         }
     });
-*/
+
     /* =====================================
        MODAL DE LOGIN
     ===================================== */
