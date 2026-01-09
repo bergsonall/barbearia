@@ -22,3 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     });
 });
+
+//desabilita botao logout se nao estiver logado
+firebase.auth().onAuthStateChanged(user => {
+    const btnLogout = document.getElementById("logout-btn");
+    if (btnLogout) {
+        if (user) {
+            btnLogout.style.display = "block";
+        } else {
+            btnLogout.style.display = "none";
+        }
+    }
+});
