@@ -64,16 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
        PROTEÇÃO DO BOTÃO "AGENDAR"
     ===================================== */
     document.addEventListener('click', (e) => {
+        console.log('Clique detectado em:', e.target);
         const btn = e.target.closest('.cta-agendar');
         if (!btn) return;
+
+        e.preventDefault(); // 🔒 SEMPRE bloqueia o href
 
         const user = firebase.auth().currentUser;
 
         if (!user) {
-            e.preventDefault();
-            abrirModal(btn.getAttribute('href'));
+            // Redireciona para login com página de retorno
+            abrirModal(window.location.href);
+            return;
+        } else {
+            // Usuário logado → vai direto
+            window.location.href = 'pages/agendamento.html';
         }
     });
+
 
 
     /* =====================================

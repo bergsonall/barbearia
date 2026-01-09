@@ -22,9 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (!user.emailVerified) {
                     hideLoading();
-                    document.getElementById("invalid-feedback").textContent = "Por favor, verifique seu email antes de fazer login.";
-                    document.getElementById("invalid-feedback").style.display = "block";
-                    firebase.auth().signOut();
+                    const feedback = document.getElementById("invalid-feedback");
+
+                    feedback.textContent = "Por favor, verifique seu email antes de fazer login.";
+                    feedback.classList.add("show");
                     return;
                 }
                 window.location.href = "../index.html";
@@ -34,16 +35,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 hideLoading();
                 console.error("Erro ao logar o usuário:", error);
                 console.log("Código do erro:", error.code);
+                const feedback = document.getElementById("invalid-feedback");
 
                 if (!password || !email) {
-                    document.getElementById("invalid-feedback").textContent = "Email e senha não podem estar vazios.";
-                    document.getElementById("invalid-feedback").style.display = "block";
-                } else if (error.code === "auth/invalid-credential") {
-                    document.getElementById("invalid-feedback").textContent = "Credenciais inválidas.";
-                    document.getElementById("invalid-feedback").style.display = "block";
+                    feedback.textContent = "Email e senha não podem estar vazios.";
+                    feedback.classList.add("show");
+                } else if (error.code === "auth/invalid-login-credentials") {
+                    feedback.textContent = "Credenciais inválidas.";
+                    feedback.classList.add("show");
                 } else if (error.code === "auth/invalid-email") {
-                    document.getElementById("invalid-feedback").textContent = "Email inválido.";
-                    document.getElementById("invalid-feedback").style.display = "block";
+                    feedback.textContent = "Email inválido.";
+                    feedback.classList.add("show");
                 }
             });
         });

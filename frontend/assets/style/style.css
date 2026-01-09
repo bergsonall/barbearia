@@ -70,7 +70,7 @@ body::before {
    ------------------ */
 header {
     background: rgba(0, 0, 0, 0.9);
-    padding: 1rem 5%;
+    padding: 0.7rem 5%;
     position: fixed;
     top: 0;
     width: 100%;
@@ -164,11 +164,26 @@ nav ul li a:hover {
     transition: transform .5s, background-color .5s;
 }
 
+.hero .hero-content .cta-agendarr,
+.cta-agendarr {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 15px 30px;
+    background: red;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: transform .5s, background-color .5s;
+}
+
 .hero .hero-content .cta-agendar:hover,
 .cta-agendar:hover {
     transform: scale(1.05);
     background: #1ebe57;
 }
+
 
 /* ------------------
    Serviços / Cards
@@ -548,6 +563,7 @@ button:disabled,
     transform: none;
 }
 
+
 @media (max-width:800px) {
     .auth-panel {
         grid-template-columns: 1fr
@@ -759,3 +775,141 @@ button:disabled,
         padding: 24px 18px;
     }
 }
+
+.invalid-feedback {
+    display: none;
+    color: #dc3545;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.invalid-feedback.show {
+    display: block;
+}
+/* =========================
+   AGENDAMENTO — LAYOUT
+========================= */
+
+.agendamento-intro {
+    margin-top: 40px;   /* afasta do header */
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.agendamento-intro h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.agendamento-intro p {
+    color: #cfcfcf;
+    font-size: 1rem;
+}
+
+.agendamento-card {
+    width: 100%;
+    max-width: 420px; /* mantém padrão elegante */
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.agendamento-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+}
+
+.agendamento-divider span {
+    padding: 6px 14px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.agendamento-whatsapp {
+    text-align: center;
+}
+.agendamento-whatsapp a {
+    color: var(--accent-red);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+/* =========================
+   FIX LAYOUT AGENDAMENTO
+========================= */
+
+.auth-page {
+    flex-direction: column;   /* força empilhamento vertical */
+    align-items: center;      /* centraliza tudo */
+}
+/* =========================
+   HEADER — MOBILE UX
+========================= */
+@media (max-width: 768px) {
+
+    header {
+        padding: 0.6rem 4%;
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    /* esconde menu textual no mobile */
+    nav ul {
+        display: none;
+    }
+
+    /* logo mais compacta */
+    .logo-nav,
+    #brand-logo {
+        max-width: 56px;
+    }
+
+    /* botão voltar mais discreto */
+    nav .cta-agendar {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+}
+/* =========================
+   HEADER — DESKTOP UX
+========================= */
+@media (min-width: 769px) {
+
+    nav {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+    }
+
+    nav ul {
+        justify-self: center;
+    }
+
+    nav ul li a {
+        margin: 0 18px;
+        font-size: 0.95rem;
+    }
+
+    nav .cta-agendar {
+        justify-self: end;
+    }
+}
+
+/* =========================
+   FIX BOTÃO VOLTAR (cta-agendarr)
+========================= */
+
+/* impede esticamento vertical no grid */
+header .cta-agendarr {
+    align-self: center;
+    justify-self: end;
+    height: fit-content;
+    line-height: normal;
+}
+

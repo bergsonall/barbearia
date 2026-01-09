@@ -22,26 +22,19 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../index.html#servicos">Serviços</a></li>
             </ul>
-            <a href="../index.html" class="cta-agendarr">Voltar</a>
+            <a href="../index.html" class="cta-agendar">Voltar</a>
         </nav>
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="auth-page">
+    <main>
+        <div class="form-wrapper">
+            <h1>Agendamento pelo site</h1>
+            <p>Preencha o formulário abaixo para solicitar seu horário.</p>
 
-        <!-- CONTEXTO / INTRO -->
-        <section class="agendamento-intro">
-            <h1>Agendamento</h1>
-            <p>
-                Escolha o serviço, data e horário desejados.
-                A confirmação será feita em seguida.
-            </p>
-        </section>
-
-        <!-- CARD CENTRAL -->
-        <section class="form-wrapper agendamento-card">
-
-            <form id="form-agendamento">
+            <!-- FORMULÁRIO DE AGENDAMENTO -->
+            <!-- Nome -->
+             <form id="form-agendamento">
 
                 <div class="form-group">
                     <label for="nome">Nome completo</label>
@@ -68,34 +61,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="hora">Horário</label>
+                    <label for="hora">Hora</label>
                     <input id="hora" name="hora" type="time" required>
                 </div>
 
-                <!-- CTA PRINCIPAL -->
                 <div class="form-actions">
                     <button type="submit" class="cta-agendar">
                         Enviar solicitação
                     </button>
                 </div>
-
-            </form>
-
-            <!-- DIVISOR -->
-            <div class="agendamento-divider">
-                <span>ou</span>
-            </div>
-
-            <!-- CTA SECUNDÁRIO -->
+        </div>
+        <!-- WhatsApp -->
+        <p style="margin-top:20px;">
+            Ou
             <a href="https://wa.me/5132472310?text=Olá! Gostaria de agendar um horário na Ramos Barbearia."
-                class="cta-agendar agendamento-whatsapp" target="_blank">
+                class="btn-whatsapp" target="_blank">
                 Agendar via WhatsApp
             </a>
-
-        </section>
+        </p>
 
     </main>
-
 
     <!-- FOOTER -->
     <footer style="padding:20px;text-align:center;border-top:1px solid #222;">
@@ -119,11 +104,11 @@
             window.location.href = '../login.html?next=pages/agendamento.html';
         }
         */
-        /*CODIGO COMENTADO PARA BOTAO AGENDAR AGORA FUNCIONAR */
+       /*CODIGO COMENTADO PARA BOTAO AGENDAR AGORA FUNCIONAR */
 
 
 
-
+       
         /**
          * Envio do formulário
          */
