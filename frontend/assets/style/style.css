@@ -107,7 +107,7 @@ nav ul li a:hover {
    ------------------ */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('fundo-barbearia.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     background-size: cover;
     background-position: center;
     display: flex;
@@ -388,6 +388,12 @@ footer {
    LOGIN
 ========================= */
 .btn-login i {
+    font-size: 26px;
+    color: #ffffff;
+    transition: color 0.25s ease;
+}
+
+.btn-logout{
     font-size: 26px;
     color: #ffffff;
     transition: color 0.25s ease;

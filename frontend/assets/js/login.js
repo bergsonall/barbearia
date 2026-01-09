@@ -1,3 +1,8 @@
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        window.location.href = "../index.html";
+    }
+})
 // ===== FUNÇÃO DE LOGIN =====
 const btnLogin = document.getElementById("btn-login")
 if (btnLogin) {

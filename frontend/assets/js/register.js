@@ -1,5 +1,10 @@
-console.log("register.js carregado");
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        window.location.href = "../index.html";
+    }
+})
 
+// ===== FUNÇÃO DE REGISTRO =====
 const emailInput = document.getElementById("reg-email");
 const passwordInput = document.getElementById("reg-password");
 const passwordConfirmInput = document.getElementById("reg-password-confirm");
@@ -83,3 +88,4 @@ btnRegister.addEventListener("click", function (e) {
             feedback.style.display = "block";
         });
 });
+
