@@ -14,6 +14,44 @@
   <header>
     <nav id="navbar">
 
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">Entrar</h3>
+
+        <!-- FORMULÁRIO DE LOGIN -->
+        <form id="login-form" class="needs-validation" novalidate>
+
+          <!-- EMAIL -->
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" placeholder="Email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="login-password">Senha</label>
+              <input type="password" id="login-password" placeholder="Senha" required>
+            </div>
+
+            <div class="invalid-feedback" id="invalid-feedback">
+              Informe um email válido.
+            </div>
+          </div>
+
+          <!-- BOTÃO -->
+          <div class="d-grid">
+            <div class="form-submit">
+              <button type="submit" class="cta-agendar" id="btn-login">Entrar</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- LINK REGISTER -->
+        <div class="text-center mt-3">
+          <small class="text-muted">
+            Não tem conta?
+            <a href="register.html">Registrar</a>
+          </small>
+        </div>
       <div class="imagens">
         <img src="../assets/img/logo.png" alt="logo barbearia" id="brand-logo">
         <img src="../assets/img/Captura_de_tela_2026-01-05_233355-removebg-preview.png" alt="logo nome" id="brand-name">
