@@ -247,13 +247,6 @@ nav ul li a:hover {
     font-size: 2.4rem;
 }
 
-footer {
-    padding: 20px;
-    text-align: center;
-    border-top: 1px solid #222;
-    font-size: .9rem;
-}
-
 /* ------------------
    Modal de aviso (login required)
    Estilo alinhado com o visual do site
@@ -913,3 +906,152 @@ header .cta-agendarr {
     line-height: normal;
 }
 
+/* =========================
+   FOOTER (mais elaborado)
+========================= */
+.site-footer {
+  border-top: 1px solid #222;
+  background: rgba(0, 0, 0, 0.92);
+  padding-top: 40px;
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 28px;
+  padding-bottom: 28px;
+}
+
+.footer-title {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.footer-brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-logo {
+  width: 64px;
+  height: auto;
+}
+
+.footer-name {
+  width: 140px;
+  height: auto;
+}
+
+.footer-desc {
+  color: #cfcfcf;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+.footer-links,
+.footer-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li,
+.footer-info li {
+  margin-bottom: 10px;
+  color: #d6d6d6;
+  font-size: 0.95rem;
+}
+
+.footer-links a {
+  color: #d6d6d6;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--accent-red);
+  transform: translateX(2px);
+}
+
+.footer-info i {
+  margin-right: 10px;
+  color: var(--accent-red);
+}
+
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #d6d6d6;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-contact:hover {
+  color: var(--accent-red);
+  transform: translateX(2px);
+}
+
+.footer-contact i {
+  color: var(--accent-red);
+}
+
+/* Faixa inferior */
+.footer-bottom {
+  border-top: 1px solid #222;
+  padding: 16px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #bdbdbd;
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-legal a {
+  color: #bdbdbd;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--accent-red);
+}
+
+.footer-sep {
+  opacity: 0.7;
+}
+
+/* Responsivo do footer */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-name {
+    width: 120px;
+  }
+}
