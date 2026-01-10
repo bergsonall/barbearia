@@ -1061,3 +1061,62 @@ header .cta-agendarr {
     text-align: center;
 
 }
+
+.servicos-opcoes {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+/* esconde o radio real */
+.servico-card input {
+    display: none;
+}
+
+/* card visual */
+.servico-card {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+/* hover */
+.servico-card:hover {
+    border-color: red;
+}
+
+/* quando o radio estiver marcado */
+.servico-card input:checked + span {
+    display: block;
+}
+
+.servico-card input:checked + span,
+.servico-card input:checked + span::before {
+    background: red;
+}
+
+/* aplica visual de ativo */
+.servico-card input:checked ~ span,
+.servico-card input:checked + span {
+    color: #fff;
+}
+
+/* truque: pinta o label quando o radio está checked */
+.servico-card:has(input:checked) {
+    background: red;
+    border-color: red;
+}
+
+.servico-card.active {
+    background: red;
+    border-color: red;
+}
