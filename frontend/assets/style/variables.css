@@ -1,0 +1,11 @@
+/* ==========================
+   00 - Variables
+   - cores e tokens do tema
+   ========================== */
+
+:root {
+  --black: #0a0a0a;
+  --dark-grey: #1a1a1a;
+  --accent-red: #e60000; /* Vermelho do logo */
+  --white: #ffffff;
+}

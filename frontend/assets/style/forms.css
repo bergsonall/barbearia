@@ -1,0 +1,171 @@
+/* ==========================
+   05 - Forms
+   - login, register, agendamento
+   ========================== */
+
+.auth-page {
+  padding-top: 160px; /* compensa header fixo */
+  padding-left: 5%;
+  padding-right: 5%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column; /* mantém o agendamento empilhado */
+  align-items: center;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 420px;
+  background: var(--dark-grey);
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 28px 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.form-wrapper h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #ddd;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.18);
+}
+
+.form-group input:required:invalid:not(:placeholder-shown) {
+  border-color: var(--accent-red);
+}
+
+.form-group input:required:valid {
+  border-color: #1ebe57;
+}
+
+.form-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-submit button,
+.form-submit .cta-agendar {
+  width: 100%;
+}
+
+.form-helper {
+  margin-top: 14px;
+  text-align: center;
+  color: #bdbdbd;
+}
+
+.form-helper a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.form-helper a:hover {
+  color: var(--accent-red);
+  transform: scale(1.08);
+}
+
+.invalid-feedback {
+  display: none;
+  color: #dc3545;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.invalid-feedback.show {
+  display: block;
+}
+
+/* UX estados de botões */
+button:disabled,
+.cta-agendar.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Agendamento */
+.agendamento-intro {
+  margin-top: 40px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.agendamento-intro h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.agendamento-intro p {
+  color: #cfcfcf;
+  font-size: 1rem;
+}
+
+.agendamento-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.agendamento-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.agendamento-divider span {
+  padding: 6px 14px;
+  border: 1px solid #333;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.agendamento-whatsapp {
+  text-align: center;
+}
+
+.agendamento-card .cta-agendar {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}

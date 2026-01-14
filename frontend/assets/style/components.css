@@ -1,0 +1,267 @@
+/* ==========================
+   04 - Components
+   - botões, ícones, cards, modal, seletores
+   ========================== */
+
+/* CTA principal */
+.cta-agendar {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  background: red;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 6px;
+  transition: transform 0.5s, background-color 0.5s;
+}
+
+.cta-agendar:hover {
+  transform: scale(1.05);
+  background: #1ebe57;
+}
+
+/* Cards serviços */
+.service-card {
+  background: var(--dark-grey);
+  padding: 30px;
+  border: 1px solid #333;
+  transition: 0.2s;
+}
+
+.service-card i {
+  font-size: 2.5rem;
+  color: var(--accent-red);
+  margin-bottom: 15px;
+}
+
+.red-card {
+  border: 2px solid var(--accent-red);
+}
+
+.service-card-alt {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.0));
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card-alt:hover {
+  transform: translateY(-4px);
+  border-color: rgba(230, 0, 0, 0.35);
+}
+
+.service-card-alt i {
+  font-size: 2.4rem;
+}
+
+/* Ícones do Header (Login / WhatsApp / Logout) */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* espaçamento igual entre todos */
+}
+
+/* Ordem desejada: logout esquerda, login centro, whatsapp direita */
+#logout-btn { order: 1; }
+#auth-btn { order: 2; }
+.btn-whatsapp { order: 3; }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.25s ease, color 0.25s ease, filter 0.25s ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px) scale(1.15);
+}
+
+/* LOGIN icon */
+.btn-login i {
+  font-size: 26px;
+  color: #ffffff;
+  transition: color 0.25s ease;
+}
+.btn-login:hover i {
+  color: var(--accent-red);
+}
+
+/* LOGOUT icon */
+.btn-logout i {
+  font-size: 26px;
+  color: #ffffff;
+  transition: color 0.25s ease;
+}
+.btn-logout:hover i {
+  color: var(--accent-red);
+}
+
+/* WhatsApp icon */
+.btn-whatsapp i {
+  font-size: 28px;
+  color: #ffffff;
+  transition: color 0.25s ease;
+}
+.btn-whatsapp:hover i {
+  color: #25D366;
+}
+
+/* Botão voltar (login/register) */
+.btn-voltar,
+.btn-voltar:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.btn-voltar:hover {
+  color: var(--accent-red);
+}
+
+.btn-voltar i {
+  color: inherit;
+  font-size: 24px;
+}
+
+/* Modal login required */
+.modal-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.0);
+  transition: background 250ms ease;
+  z-index: 1500;
+}
+
+.modal-panel {
+  position: relative;
+  z-index: 1501;
+  background: #111;
+  color: #fff;
+  max-width: 380px;
+  width: 90%;
+  border: 1px solid #222;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 32px 28px 56px;
+}
+
+.modal-panel h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-red);
+}
+
+.modal-panel p {
+  margin: 0 0 18px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+.modal-panel,
+.modal-panel * {
+  pointer-events: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: none;
+  border-radius: 50%;
+  color: #bbb;
+  font-size: 26px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(230, 0, 0, 0.15);
+  color: var(--accent-red);
+  transform: scale(1.15);
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+.modal-open {
+  pointer-events: auto;
+}
+
+.modal-open .modal-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-open .modal-panel {
+  opacity: 1;
+  animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Seleção de serviços (agendamento) */
+.servicos-opcoes {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.servico-card input {
+  display: none;
+}
+
+.servico-card {
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.servico-card:hover {
+  border-color: red;
+}
+
+.servico-card:has(input:checked),
+.servico-card.active {
+  background: red;
+  border-color: red;
+}
