@@ -89,7 +89,10 @@ nav ul li a:hover {
 }
 
 .services-alt {
-  background: radial-gradient(circle at top, rgba(230, 0, 0, 0.10), transparent 55%);
+  background:
+    linear-gradient(to bottom, #070707 0%, transparent 25%),
+    radial-gradient(circle at top, rgba(230, 0, 0, 0.12), transparent 60%),
+    radial-gradient(circle at top, rgba(230, 0, 0, 0.10), transparent 55%);
 }
 
 .services-grid-alt {
