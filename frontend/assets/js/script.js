@@ -3,7 +3,6 @@
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
-
     /* =====================================
        AUTENTICAÇÃO (LOGIN / LOGOUT)
     ===================================== */
@@ -63,22 +62,24 @@ document.addEventListener('DOMContentLoaded', () => {
        PROTEÇÃO DO BOTÃO "AGENDAR"
     ===================================== */
     document.addEventListener('click', (e) => {
-        console.log('Clique detectado em:', e.target);
         const btn = e.target.closest('.cta-agendar');
         if (!btn) return;
 
         e.preventDefault(); // 🔒 SEMPRE bloqueia o href
+        // ============================
+        // CONTROLE DE USUÁRIO LOGADO
+        // ============================
 
-        const user = firebase.auth().currentUser;
-
-        if (!user) {
-            // Redireciona para login com página de retorno
-            abrirModal(window.location.href);
-            return;
-        } else {
-            // Usuário logado → vai direto
-            window.location.href = 'pages/agendamento.html';
-        }
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                // Redireciona para login com página de retorno
+                abrirModal(window.location.href);
+                return;
+            } else {
+                // Usuário logado → vai direto
+                window.location.href = 'pages/agendamento.html';
+            }
+        });
     });
 
 
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ===================================== */
     const modal = document.getElementById('login-modal');
     const modalLoginBtn = document.getElementById('modal-login-btn');
+
 
     function abrirModal(nextUrl) {
         if (!modal) return;
@@ -138,54 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             header.style.backgroundColor =
                 window.scrollY > 50 ? '#000' : 'rgba(0, 0, 0, 0.9)';
-        });
-    }
-    /* =====================================
-        REGISTER (CADASTRO)
-    ===================================== */
-    const registerForm = document.getElementById('register-form');
-
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const nome = document.getElementById('reg-name')?.value.trim();
-            const email = document.getElementById('reg-email')?.value.trim();
-            const senha = document.getElementById('reg-password')?.value;
-
-            if (!nome || nome.length < 3) {
-                alert('Nome deve ter no mínimo 3 caracteres');
-                return;
-            }
-
-            if (!email || !email.includes('@')) {
-                alert('Informe um email válido');
-                return;
-            }
-
-            if (!senha || senha.length < 6) {
-                alert('Senha deve ter no mínimo 6 caracteres');
-                return;
-            }
-
-            try {
-                const response = await fetch('http://localhost:3000/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, email, senha })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    alert('Cadastro realizado com sucesso');
-                    window.location.href = 'login.html';
-                } else {
-                    alert(data.erro || 'Erro no cadastro');
-                }
-            } catch (err) {
-                alert('Erro de conexão com o servidor.');
-            }
         });
     }
 });

@@ -1,7 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    firebase.auth().onAuthStateChanged((userCredential) => {
+    firebase.auth().onAuthStateChanged(async (userCredential) => {
         if (userCredential && userCredential.emailVerified) {
-            window.location.href = "../index.html";
+            const idToken = JSON.parse(localStorage.getItem('idToken'))
+            const payload = JSON.parse(localStorage.getItem('pendingProfile'))
+            if (payload === null) window.location.href = "../index.html"
+            await window.registerUserData(payload, idToken)
+            localStorage.removeItem('profilePending')
+            localStorage.removeItem('idToken')
+            localStorage.clear()
+            window.location.href = "../index.html"
         }
     })
     // ===== FUNÇÃO DE LOGIN =====
@@ -17,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Tentando logar com", email, password);
 
             // Faz login no Firebase
-            firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+            firebase.auth().signInWithEmailAndPassword(email, password).then(async (userCredential) => {
                 const user = userCredential.user;
 
                 if (!user.emailVerified) {
@@ -28,8 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     feedback.classList.add("show");
                     return;
                 }
-                window.location.href = "../index.html";
-                hideLoading();
             }).catch(error => {
                 // Trata diferentes tipos de erro
                 hideLoading();
@@ -40,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!password || !email) {
                     feedback.textContent = "Email e senha não podem estar vazios.";
                     feedback.classList.add("show");
-                } else if (error.code === "auth/invalid-login-credentials") {
+                } else if (error.code === "auth/invalid-credential") {
                     feedback.textContent = "Credenciais inválidas.";
                     feedback.classList.add("show");
                 } else if (error.code === "auth/invalid-email") {

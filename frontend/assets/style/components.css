@@ -4,7 +4,7 @@
    ========================== */
 
 /* CTA principal */
-.cta-agendar {
+.cta-agendar, .cta-agendar-css{
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -17,7 +17,7 @@
   transition: transform 0.5s, background-color 0.5s;
 }
 
-.cta-agendar:hover {
+.cta-agendar:hover, .cta-agendar-css:hover {
   transform: scale(1.05);
   background: #1ebe57;
 }

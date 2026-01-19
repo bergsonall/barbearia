@@ -1,10 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            window.location.href = "../index.html";
-        }
-    })
-
     // ===== FUNÇÃO DE REGISTRO =====
     const emailInput = document.getElementById("reg-email");
     const passwordInput = document.getElementById("reg-password");
@@ -63,33 +57,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
         firebase.auth()
             .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                firebase.auth().signOut();
+            .then(async (userCredential) => {
                 const user = userCredential.user;
 
-                // 🔐 Envia email de verificação
-                return user.sendEmailVerification();
-            })
-            .then(() => {
-                hideLoading();
-                feedback.textContent =
-                    "Cadastro realizado! Verifique seu email para ativar a conta.";
-                feedback.style.display = "block";
+                await user.sendEmailVerification();
 
-                setTimeout(() => {
-                    window.location.href = "login.html";
-                }, 10000);
-            })
-            .then(() => {
+                const uid = user.uid;
+                const idToken = await user.getIdToken();
+                console.log('teste1')
+                const payload = {
+                    nome: name,
+                    telefone: 'nulo',
+                    email: user.email,
+                    firebase_uid: uid,
+                    criado_em: new Date().toISOString()
+                }
+                localStorage.setItem('idToken', JSON.stringify(idToken))
+                localStorage.setItem('pendingProfile', JSON.stringify(payload))
+                await firebase.auth().signOut();
+
                 hideLoading();
-                feedback.textContent = "Usuário registrado com sucesso!";
+                feedback.textContent = "Cadastro realizado! Verifique seu email para ativar a conta.";
                 feedback.style.display = "block";
-                window.location.href = "login.html";
+                setTimeout(() => window.location.href = "./login.html", 1000);
             })
             .catch(error => {
                 hideLoading();
                 console.error(error);
-
                 if (error.code === "auth/weak-password") {
                     feedback.textContent = "Senha muito fraca (mínimo 6 caracteres).";
                 } else if (error.code === "auth/invalid-email") {
@@ -99,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     feedback.textContent = "Erro ao registrar usuário.";
                 }
-
                 feedback.style.display = "block";
             });
     });

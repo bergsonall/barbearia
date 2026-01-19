@@ -1,3 +1,5 @@
+const API = "http://localhost:3001";
+
 // backend/auth.js
 const firebaseConfig = {
   apiKey: "AIzaSyCwHSefApnq82su3wZrSQ5GC4jdmnoiqL0",

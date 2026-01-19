@@ -1,6 +1,20 @@
 /*aguarda pagina carregar, monitora mudanças no input*/
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ============================
+    // CONTROLE DE USUÁRIO LOGADO
+    // ============================
+    let usuarioLogado = null;
+
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            usuarioLogado = user;
+        } else {
+            alert("Você precisa estar logado para acessar esta página.");
+            window.location.href = "login.html";
+        }
+    });
+
     let dataEscolhida = null;   // ✅ variável global
     let hojeData = null;       // ✅ usada depois no botão
 
@@ -22,9 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // visual ativo
             cards.forEach(c => c.classList.remove('active'));
             card.classList.add('active');
-
-            // log
-            console.log("Serviço escolhido:", servicoSelecionado);
         });
     });
 
@@ -34,6 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dataInput = document.getElementById('data');
     const horaInput = document.getElementById('hora');
+    dataInput.addEventListener('change', () => {
+        if (!dataInput.value) {
+            horaInput.disabled = true;
+            horaInput.innerHTML = '<option value="">Selecione um horário</option>';
+            return;
+        }
+
+        gerarHorariosDisponiveis(dataInput.value);
+    });
+
 
     // começa bloqueado
     horaInput.disabled = true;
@@ -79,8 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (horaInput.value && horaInput.value < minHora) {
             horaInput.value = "";
         }
-
-        console.log("Data válida:", dataInput.value);
     });
 
     // valida toda mudança de hora
@@ -107,36 +126,24 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // ❌ fora do expediente
+        /* ❌ fora do expediente
         if (hora < "09:00" || hora > "18:00") {
             alert("Horário fora do expediente (09:00 - 18:00).");
             horaInput.value = "";
             return;
-        }
-
-        console.log("Hora válida:", hora);
+        }*/
     });
 
-    // ============================
-    // CONTROLE DE USUÁRIO LOGADO
-    // ============================
-    let usuarioLogado = null;
-
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            usuarioLogado = user;
-        } else {
-            alert("Você precisa estar logado para acessar esta página.");
-            window.location.href = "../login.html";
-        }
-    });
 
     // ============================
     // BOTÃO AGENDAR
     // ============================
     const agendarBtn = document.getElementById('agendarBtn');
 
-    agendarBtn.addEventListener('click', () => {
+    agendarBtn.addEventListener('click', async () => {
+
+        const agendamentos = await window.consultAgendamentos(new Date(dataInput.value).toISOString())
+        console.log('agendamentos: ' + JSON.stringify(agendamentos))
 
         if (!servicoSelecionado) {
             alert("Selecione um serviço.");
@@ -165,29 +172,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        const user = await window.consultUserId()
+
+        const service = await window.consultServiceId(servicoSelecionado)
 
         const agendamentoData = {
-            servico: servicoSelecionado,
-            data: dataInput.value,
-            hora: horaInput.value,
-            uid: usuarioLogado.uid,
-            criadoEm: new Date()
+            usuario_id: user.id,
+            servico_id: service.id,
+            barbeiro_id: 1,
+            data: new Date(dataInput.value).toISOString(),
+            hora: horaInput.value + ':00',
+            status: 'pendente',
+            criado_em: new Date().toISOString()
         };
 
-        console.log("📦 Enviando:", agendamentoData);
-
-        firebase.firestore()
-            .collection("agendamentos")
-            .add(agendamentoData)
-            .then(doc => {
-                console.log("✅ SALVO:", doc.id);
-                alert("Agendamento salvo com sucesso!");
-            })
-            .catch(err => {
-                console.error("❌ ERRO:", err);
-                alert("Erro ao salvar: " + err.message);
-            });
-        alert("Agendamento realizado com sucesso!");
+        await window.registerAgendamento(agendamentoData)
     });
 
 });
+function gerarHorariosDisponiveis(dataSelecionada) {
+    const selectHora = document.getElementById('hora');
+    selectHora.innerHTML = '<option value="">Selecione um horário</option>';
+
+    const inicio = 9 * 60;   // 09:00 em minutos
+    const fim = 18 * 60;     // 18:00 em minutos
+    const intervalo = 15;
+
+    const agora = new Date();
+    const hojeISO = agora.toISOString().split('T')[0];
+
+    for (let minutos = inicio; minutos <= fim; minutos += intervalo) {
+        const h = String(Math.floor(minutos / 60)).padStart(2, '0');
+        const m = String(minutos % 60).padStart(2, '0');
+        const horaStr = `${h}:${m}`;
+
+        // Se a data for hoje, bloqueia horários passados
+        if (dataSelecionada === hojeISO) {
+            const dataHora = new Date(`${dataSelecionada}T${horaStr}`);
+            if (dataHora <= agora) continue;
+        }
+
+        const option = document.createElement('option');
+        option.value = horaStr;
+        option.textContent = horaStr;
+        selectHora.appendChild(option);
+    }
+
+    selectHora.disabled = false;
+}

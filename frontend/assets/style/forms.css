@@ -78,7 +78,7 @@
 }
 
 .form-submit button,
-.form-submit .cta-agendar {
+.form-submit .cta-agendar, .cta-agendar-css {
   width: 100%;
 }
 
@@ -102,7 +102,6 @@
 }
 
 .invalid-feedback {
-  display: none;
   color: #dc3545;
   margin-top: 8px;
   font-size: 14px;
@@ -114,7 +113,7 @@
 
 /* UX estados de botões */
 button:disabled,
-.cta-agendar.disabled {
+.cta-agendar.disabled, .cta-agendar-css.disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
@@ -164,7 +163,7 @@ button:disabled,
   text-align: center;
 }
 
-.agendamento-card .cta-agendar {
+.agendamento-card .cta-agendar, .cta-agendar-css {
   width: 100%;
   max-width: 100%;
   text-align: center;

@@ -72,13 +72,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="hora">Horário</label>
-                    <input id="hora" name="hora" type="time" required>
+                    <select id="hora" name="hora" disabled required>
+                        <option value="">Selecione um horário</option>
+                    </select>
                 </div>
 
                 <!-- CTA PRINCIPAL -->
                 <div class="form-actions">
-                    <button type="submit" class="cta-agendarr" id="agendarBtn">
+                    <button type="button" class="cta-agendarr" id="agendarBtn">
                         Enviar solicitação
                     </button>
                 </div>
@@ -110,6 +111,10 @@
     <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-compat.js"></script>
     <script src="../../backend/auth.js"></script>
     <script src="../assets/js/agendamento.js"></script>
+    <script src="../../backend/getUser.js"></script>
+    <script src="../../backend/getServices.js"></script>
+    <script src="../../backend/postAgendamento.js"></script>
+    <script src="../../backend/getAgendamento.js"></script>
     <script src="../assets/js/loading.js"></script>
     <script src="../assets/js/script.js"></script>
 
