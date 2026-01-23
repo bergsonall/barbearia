@@ -29,36 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =====================================
-       CARREGAMENTO DE SERVIÇOS
-    ===================================== */
-    /*   const servicesGrid = document.getElementById('services-grid');
-    
-        if (servicesGrid) {
-            fetch('http://localhost:3000/servicos')
-                .then(res => res.json())
-                .then(servicos => {
-                    servicesGrid.innerHTML = '';
-    
-                    servicos.forEach(servico => {
-                        const card = document.createElement('div');
-                        card.className = 'service-card red-card';
-    
-                        card.innerHTML = `
-                            <i class="fa-solid fa-scissors"></i>
-                            <h3>${servico.nome}</h3>
-                            <p>${servico.descricao || 'Serviço premium Ramos Barbearia'}</p>
-                            <strong>R$ ${servico.preco}</strong>
-                        `;
-    
-                        servicesGrid.appendChild(card);
-                    });
-                })
-                .catch(() => {
-                    servicesGrid.innerHTML = '<p>Erro ao carregar serviços.</p>';
-                });
-        }
-    */
-    /* =====================================
        PROTEÇÃO DO BOTÃO "AGENDAR"
     ===================================== */
     document.addEventListener('click', (e) => {
@@ -82,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-
     /* =====================================
        MODAL DE LOGIN
     ===================================== */
@@ -96,16 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.dataset.next = nextUrl || 'pages/agendamento.html';
         modal.classList.add('modal-open');
-        modal.style.visibility = 'visible';
-        modal.style.pointerEvents = 'auto';
+        modal.setAttribute('aria-hidden', 'false');
     }
 
     function fecharModal() {
         if (!modal) return;
 
         modal.classList.remove('modal-open');
-        modal.style.visibility = 'hidden';
-        modal.style.pointerEvents = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        delete modal.dataset.next;
     }
 
     if (modal) {
@@ -121,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (modalLoginBtn) {
         modalLoginBtn.addEventListener('click', () => {
-            const next = modal.dataset.next || 'pages/agendamento.html';
+            const next = modal?.dataset?.next || 'pages/agendamento.html';
             window.location.href =
                 'pages/login.html?next=' + encodeURIComponent(next);
         });
@@ -129,6 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') fecharModal();
+    });
+
+    // Garantia: ao carregar, modal SEMPRE inicia fechado e sem inline style
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!modal) return;
+        modal.classList.remove('modal-open');
+        modal.removeAttribute('style'); // <- ESSA LINHA resolve o overlay preso
+        modal.setAttribute('aria-hidden', 'true');
     });
 
     /* =====================================
