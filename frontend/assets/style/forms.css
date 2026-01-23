@@ -4,14 +4,16 @@
    ========================== */
 
 .auth-page {
-  padding-top: 160px; /* compensa header fixo */
+  padding-top: 160px;
+  /* compensa header fixo */
   padding-left: 5%;
   padding-right: 5%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  flex-direction: column; /* mantém o agendamento empilhado */
+  flex-direction: column;
+  /* mantém o agendamento empilhado */
   align-items: center;
 }
 
@@ -78,8 +80,14 @@
 }
 
 .form-submit button,
-.form-submit .cta-agendar, .cta-agendar-css {
+.form-submit .cta-agendar,
+.cta-agendar-css {
   width: 100%;
+}
+
+.form-actions .cta-agendarr {
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .form-helper {
@@ -113,7 +121,8 @@
 
 /* UX estados de botões */
 button:disabled,
-.cta-agendar.disabled, .cta-agendar-css.disabled {
+.cta-agendar.disabled,
+.cta-agendar-css.disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
@@ -163,8 +172,151 @@ button:disabled,
   text-align: center;
 }
 
-.agendamento-card .cta-agendar, .cta-agendar-css {
+.agendamento-card .cta-agendar,
+.cta-agendar-css {
   width: 100%;
   max-width: 100%;
   text-align: center;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.agendamento-barbeiro__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agendamento-data__calendar {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: #0f0f0f;
+}
+
+.agendamento-data__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.agendamento-data__month {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.agendamento-data__nav {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.agendamento-data__nav:hover {
+  border-color: var(--accent-red);
+  transform: translateY(-1px);
+}
+
+.agendamento-data__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.agendamento-data__dow {
+  padding: 4px 0;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #8f8f8f;
+  text-transform: uppercase;
+}
+
+.agendamento-data__empty {
+  height: 34px;
+}
+
+.agendamento-data__day {
+  padding: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.agendamento-data__day:hover {
+  border-color: var(--accent-red);
+  transform: translateY(-1px);
+}
+
+.agendamento-data__day.is-selected {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.agendamento-data__day.is-today {
+  box-shadow: 0 0 0 2px rgba(230, 0, 0, 0.25);
+}
+
+.agendamento-data__day.is-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.agendamento-horario__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.agendamento-horario__chips:empty::before {
+  content: "Selecione uma data para ver horarios";
+  color: #8f8f8f;
+  font-size: 0.9rem;
+}
+
+.agendamento-horario__chips.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.agendamento-horario__chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.agendamento-horario__chip:hover {
+  border-color: var(--accent-red);
+  transform: translateY(-1px);
+}
+
+.agendamento-horario__chip.is-selected {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.agendamento-horario__chip.is-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.agendamento-data__day:focus-visible,
+.agendamento-horario__chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.25);
 }

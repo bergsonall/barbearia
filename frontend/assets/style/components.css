@@ -4,7 +4,8 @@
    ========================== */
 
 /* CTA principal */
-.cta-agendar, .cta-agendar-css{
+.cta-agendar,
+.cta-agendar-css {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -17,9 +18,47 @@
   transition: transform 0.5s, background-color 0.5s;
 }
 
-.cta-agendar:hover, .cta-agendar-css:hover {
+.cta-agendar:hover,
+.cta-agendar-css:hover {
   transform: scale(1.05);
   background: #1ebe57;
+}
+
+/* CTA secundario/alternativo (agendamento) */
+.cta-agendarr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--accent-red);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta-agendarr:hover {
+  background: #1ebe57;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.cta-agendarr:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.3);
+}
+
+.cta-agendarr:disabled,
+.cta-agendarr[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 /* Cards serviços */
