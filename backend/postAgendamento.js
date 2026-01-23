@@ -7,7 +7,8 @@ window.registerAgendamento = async function registerAgendamento(payload) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${idToken}`
+            "Authorization": `Bearer ${idToken}`,
+            "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify(payload),
         });

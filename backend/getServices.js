@@ -11,7 +11,8 @@ window.consultServiceId = async function consultServiceId(servicoSelecionado) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${idToken}`
+            "Authorization": `Bearer ${idToken}`,
+            "ngrok-skip-browser-warning": "true"
         }
     });
 

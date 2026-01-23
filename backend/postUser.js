@@ -3,7 +3,8 @@ window.registerUserData = async function registerUserData(payload, idToken) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${idToken}`
+            "Authorization": `Bearer ${idToken}`,
+            "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify(payload),
         });

@@ -1,5 +1,6 @@
 window.consultAgendamentos = async function consultAgendamentos(dataISO) {
     const user = firebase.auth().currentUser;
+    const API = "https://spoutless-catarina-immusically.ngrok-free.dev";
     if (!user) throw new Error("Usuário não autenticado.");
 
     const idToken = await user.getIdToken();
@@ -15,6 +16,7 @@ window.consultAgendamentos = async function consultAgendamentos(dataISO) {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${idToken}`,
+            "ngrok-skip-browser-warning": "true"
         },
     });
 
@@ -24,6 +26,5 @@ window.consultAgendamentos = async function consultAgendamentos(dataISO) {
         console.error("Erro API:", data);
         throw new Error(data?.error?.message || "Erro ao buscar agendamentos");
     }
-
     return Array.isArray(data) ? data : [];
 };

@@ -324,18 +324,39 @@ function gerarHorariosDisponiveis(dataSelecionada, horarios) {
             if (dataHora <= agora) continue;
         }
 
+        if (!horarios || horarios.length === 0) {
+            const option = document.createElement('option');
+            option.value = horaStr;
+            option.textContent = horaStr;
+            selectHora.appendChild(option);
+
+            if (chipsContainer) {
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = 'agendamento-horario__chip';
+                chip.dataset.value = horaStr;
+                chip.textContent = horaStr;
+                chip.addEventListener('click', () => {
+                    selectHora.value = horaStr;
+                    atualizarChipsSelecionados(horaStr);
+                    selectHora.dispatchEvent(new Event('change', { bubbles: true }));
+                });
+                chipsContainer.appendChild(chip);
+            }
+        }
+
         let c = 0
         horarios.forEach(h => {
-            if (minutosStr >= h[0] && minutosStr <= h[1]) {
+            c++
+            if (minutosStr >= h[0] && minutosStr < h[1]) {
                 return
             } else {
-                c += 1
-                console.log(c, horarios.length)
                 if (c === horarios.length) {
                     const option = document.createElement('option');
                     option.value = horaStr;
                     option.textContent = horaStr;
                     selectHora.appendChild(option);
+
                     if (chipsContainer) {
                         const chip = document.createElement('button');
                         chip.type = 'button';

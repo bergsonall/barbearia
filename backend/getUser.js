@@ -12,7 +12,8 @@ window.consultUserId = async function consultUserId() {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${idToken}`
+            "Authorization": `Bearer ${idToken}`,
+            "ngrok-skip-browser-warning": "true"
         }
     });
 
